@@ -1,3 +1,3 @@
 [submodule "agx3c_devkit/modular-design-toolkit"]
 	path = agx3c_devkit/modular-design-toolkit
-	url = https://github.com/altera-fpga/modular-design-toolkit.git
+	url = https://grp-sseteamcityagent@github.com/altera-fpga/modular-design-toolkit.git

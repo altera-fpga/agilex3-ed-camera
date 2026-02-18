@@ -1,0 +1,104 @@
+<!--
+###################################################################################
+# Copyright (C) Altera Corporation
+#
+# This software and the related documents are Altera copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Altera's prior written permission.
+#
+# This software and the related documents are provided as is, with no express
+# or implied warranties, other than those that are expressly stated in the License.
+###################################################################################
+-->
+<PROJECT name="top">
+  <DEVKIT>AGX_3C_Devkit</DEVKIT>
+  <FAMILY>Agilex 3</FAMILY>
+  <DEVICE>A3CY135BM16AE6S</DEVICE>
+  <VERSION>25.3</VERSION>
+  <SUBSYSTEM type="clock" name="clock_subsystem">
+    <DISABLE_DEFAULT_BOARD_CLKRST_EXPORT_TAG>1</DISABLE_DEFAULT_BOARD_CLKRST_EXPORT_TAG>
+    <NUM_GEN_CLOCKS>4</NUM_GEN_CLOCKS>
+    <GEN_CLK0_NAME>clk_0</GEN_CLK0_NAME>
+    <GEN_CLK0_FREQ>148.5</GEN_CLK0_FREQ>
+    <GEN_CLK1_NAME>clk_1</GEN_CLK1_NAME>
+    <GEN_CLK1_FREQ>297.0</GEN_CLK1_FREQ>    
+    <GEN_CLK2_NAME>clk_2</GEN_CLK2_NAME>
+    <GEN_CLK2_FREQ>50.0</GEN_CLK2_FREQ>
+    <GEN_CLK3_NAME>clk_3</GEN_CLK3_NAME>
+    <GEN_CLK3_FREQ>16.0</GEN_CLK3_FREQ>
+    <RESET_MIN_LENGTH>3000</RESET_MIN_LENGTH>
+    <EXPORT_TO_TOP>1</EXPORT_TO_TOP>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="board" name="board_subsystem">
+    <PORT>BANK_2A</PORT>
+    <DEVICE_READY_EN>1</DEVICE_READY_EN>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="cpu" name="niosv_subsystem">
+    <CPU_SUBSYSTEM_TYPE>niosv</CPU_SUBSYSTEM_TYPE>
+    <APPLICATION_DIR>./../custom_subsystems/software_dp_tx_lite/.</APPLICATION_DIR>
+    <BSP_SETTINGS_FILE>./../custom_subsystems/software_dp_tx_lite/settings.bsp</BSP_SETTINGS_FILE>
+    <CUSTOM_CMAKEFILE>1</CUSTOM_CMAKEFILE>
+    <MEMORY_SIZE>0x40000</MEMORY_SIZE>
+    <TIMER_TYPE>full</TIMER_TYPE>
+    <TIMER_PERIOD>1</TIMER_PERIOD>
+    <TIMER_UNITS>USEC</TIMER_UNITS>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="user" name="mipi_rx_subsystem" script="./../custom_subsystems/mipi_lite_4k_in_subsystem/rpi_imx477/mipi_in_rpi_imx477_create.tcl">
+    <PIP>1</PIP>
+    <ISP_MODE>Lite</ISP_MODE>
+    <CONNECTOR_NAME>J21</CONNECTOR_NAME>
+    <EN_DEBUG>0</EN_DEBUG>
+    <VID_OUT_RATE>p30</VID_OUT_RATE> 
+    <CAM_I2C_MASTER_IRQ_PRIORITY>5</CAM_I2C_MASTER_IRQ_PRIORITY>
+    <CAM_I2C_MASTER_IRQ_HOST>niosv_subsystem</CAM_I2C_MASTER_IRQ_HOST>
+    <AVMM_HOST>
+      <NAME>niosv_subsystem</NAME>
+    </AVMM_HOST>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="user" name="isp_lite_in_subsystem" script="./../custom_subsystems/isp_lite_4k_in_subsystem/isp_4k_in_create.tcl">
+    <PIP>1</PIP>
+    <VID_OUT_RATE>p30</VID_OUT_RATE> 
+    <EN_DEBUG>0</EN_DEBUG>
+    <MULTI_SENSOR>0</MULTI_SENSOR>
+    <EXP_FUSION_EN>0</EXP_FUSION_EN>
+    <AVMM_HOST>
+      <NAME>niosv_subsystem</NAME>
+    </AVMM_HOST>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="user" name="isp_lite_subsystem" script="./../custom_subsystems/isp_lite_4k_subsystem/isp_4k_create.tcl">
+    <PIP>1</PIP>
+    <VID_OUT_RATE>p30</VID_OUT_RATE> 
+    <VID_OUT_BPS>10</VID_OUT_BPS> 
+    <EN_DEBUG>0</EN_DEBUG>
+    <AVMM_HOST>
+      <NAME>niosv_subsystem</NAME>
+    </AVMM_HOST>
+  </SUBSYSTEM>    
+  <SUBSYSTEM type="user" name="isp_lite_out_subsystem" script="./../custom_subsystems/isp_lite_4k_out_subsystem/isp_4k_out_create.tcl">
+    <PIP>1</PIP>
+    <VID_OUT_BPS>10</VID_OUT_BPS>
+    <EN_DEBUG>0</EN_DEBUG>   
+    <AVMM_HOST>
+      <NAME>niosv_subsystem</NAME>
+    </AVMM_HOST>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="emif" name="emif_subsystem">
+    <PORT>BANK_2A</PORT>
+    <AVMM_HOST>
+      <NAME>niosv_subsystem</NAME>
+    </AVMM_HOST>
+  </SUBSYSTEM>
+  <SUBSYSTEM type="user" name="dp_tx_subsystem" script="./../custom_subsystems/dp_tx_lite_subsystem/dp_tx_create.tcl">
+    <I2C_MASTER_IRQ_PRIORITY>2</I2C_MASTER_IRQ_PRIORITY>
+    <I2C_MASTER_IRQ_HOST>niosv_subsystem</I2C_MASTER_IRQ_HOST>
+    <I2C_BOARD_IRQ_PRIORITY>3</I2C_BOARD_IRQ_PRIORITY>
+    <I2C_BOARD_IRQ_HOST>niosv_subsystem</I2C_BOARD_IRQ_HOST>
+    <DP_IRQ_PRIORITY>4</DP_IRQ_PRIORITY>
+    <DP_IRQ_HOST>niosv_subsystem</DP_IRQ_HOST>
+    <AVMM_HOST>
+      <NAME>niosv_subsystem</NAME>
+    </AVMM_HOST>
+  </SUBSYSTEM>
+</PROJECT>

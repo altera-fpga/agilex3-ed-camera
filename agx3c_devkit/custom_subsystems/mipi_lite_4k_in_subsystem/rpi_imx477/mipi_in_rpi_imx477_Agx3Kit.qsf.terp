@@ -1,0 +1,51 @@
+###################################################################################
+# Copyright (C) Altera Corporation
+#
+# This software and the related documents are Altera copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Altera's prior written permission.
+#
+# This software and the related documents are provided as is, with no express
+# or implied warranties, other than those that are expressly stated in the License.
+###################################################################################
+
+@@ set entity_name $param0
+@@ set connector_name $param1
+
+set_location_assignment PIN_F2 -to mipi_dphy_ref_clk -comment IOBANK_3A_T
+set_location_assignment PIN_G1 -to mipi_dphy_rzq -comment IOBANK_3A_T
+
+set_location_assignment PIN_D5 -to LINK0_dphy_io_dphy_link_c_p -comment IOBANK_3A_T
+set_location_assignment PIN_E5 -to LINK0_dphy_io_dphy_link_c_n -comment IOBANK_3A_T
+set_instance_assignment -name IO_STANDARD DPHY -to LINK0_dphy_io_dphy_link_c_p -entity ${entity_name}
+set_instance_assignment -name IO_STANDARD DPHY -to LINK0_dphy_io_dphy_link_c_n -entity ${entity_name}
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LINK0_dphy_io_dphy_link_c_p -entity ${entity_name}
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LINK0_dphy_io_dphy_link_c_n -entity ${entity_name}
+
+set_location_assignment PIN_C5 -to LINK0_dphy_io_dphy_link_d_p[0]
+set_location_assignment PIN_D4 -to LINK0_dphy_io_dphy_link_d_n[0]
+set_instance_assignment -name IO_STANDARD DPHY -to LINK0_dphy_io_dphy_link_d_p[0] -entity ${entity_name}
+set_instance_assignment -name IO_STANDARD DPHY -to LINK0_dphy_io_dphy_link_d_n[0] -entity ${entity_name}
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LINK0_dphy_io_dphy_link_d_p[0] -entity ${entity_name}
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LINK0_dphy_io_dphy_link_d_n[0] -entity ${entity_name}
+
+set_location_assignment PIN_F6 -to LINK0_dphy_io_dphy_link_d_p[1]
+set_location_assignment PIN_E6 -to LINK0_dphy_io_dphy_link_d_n[1]
+set_instance_assignment -name IO_STANDARD DPHY -to LINK0_dphy_io_dphy_link_d_p[1] -entity ${entity_name}
+set_instance_assignment -name IO_STANDARD DPHY -to LINK0_dphy_io_dphy_link_d_n[1] -entity ${entity_name}
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LINK0_dphy_io_dphy_link_d_p[1] -entity ${entity_name}
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LINK0_dphy_io_dphy_link_d_n[1] -entity ${entity_name}
+
+set_location_assignment PIN_AF27 -to cam_power_en -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to cam_power_en -entity ${entity_name}
+
+set_location_assignment PIN_AJ28 -to cam_led_en -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to cam_led_en -entity ${entity_name}
+
+set_location_assignment PIN_AK21 -to cam_i2c_scl -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to cam_i2c_scl -entity ${entity_name}
+
+set_location_assignment PIN_AK27 -to cam_i2c_sda -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to cam_i2c_sda -entity ${entity_name}
