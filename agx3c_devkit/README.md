@@ -28,9 +28,9 @@ Nios® V Processor must be downloaded and installed.
 
 Additional licensing information can be found here:
 
-* [VVP IP Suite](https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite)
-* [MIPI IP](https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3)
-* [Nios® V Processor](https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors)
+* [VVP IP Suite](https://www.altera.com/products/ip/po-3150/video-and-vision-processing-suite)
+* [MIPI IP](https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip)
+* [Nios® V Processor](https://www.altera.com/products/ip/po-3098/nios-v-processors)
 
 <br>
 
@@ -66,7 +66,7 @@ The 4Kp30 Camera Lite Example Design provides:
 
 ## Hardware Requirements
 
-* [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/a1jui000006ty5dmae/agilex-3-fpga-and-soc-c-series-development-kit) or [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/a1jui000006own7mai/agilex-3-fpga-c-series-development-kit)
+* [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit) or [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit)
 * [Raspberry Pi High Quality Camera with C/CS mount](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
 * [Wide-angle lens](https://thepihut.com/products/ultra-wide-angle-c-mount-lens-for-raspberry-pi-hq-camera-3-2mm-focal-length)
 * [Tripod](https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera)
