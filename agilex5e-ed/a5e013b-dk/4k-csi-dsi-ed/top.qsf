@@ -1,0 +1,222 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2026  Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Altera and sold by Altera or its authorized distributors.  Please
+# refer to the Altera Software License Subscription Agreements 
+# on the Quartus Prime software download page.
+
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 26.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:14:01  SEPTEMBER 21, 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION "26.1.1 Pro Edition"
+set_global_assignment -name FAMILY "Agilex 5"
+set_global_assignment -name DEVICE A5ED013BM16AE4SCS
+set_global_assignment -name OPTIMIZATION_MODE "HIGH PERFORMANCE EFFORT"
+set_global_assignment -name GLOBAL_PLACEMENT_EFFORT "MAXIMUM EFFORT"
+set_global_assignment -name SEED 1
+set_global_assignment -name PROJECT_IP_REGENERATION_POLICY ALWAYS_REGENERATE_IP
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+set_global_assignment -name PWRMGT_VOLTAGE_OUTPUT_FORMAT "LINEAR FORMAT"
+set_global_assignment -name PWRMGT_LINEAR_FORMAT_N "-12"
+set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "ACTIVE SERIAL X4"
+set_global_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON
+set_global_assignment -name GENERATE_COMPRESSED_SOF ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2012
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED WITH WEAK PULL-UP"
+
+set_global_assignment -name HPS_DAP_NO_CERTIFICATE        on
+set_global_assignment -name ENABLE_INTERMEDIATE_SNAPSHOTS ON
+set_global_assignment -name USE_HPS_COLD_RESET            SDM_IO10
+set_global_assignment -name USE_CONF_DONE                 SDM_IO16
+set_global_assignment -name USE_INIT_DONE                 SDM_IO0
+set_global_assignment -name SDM_DIRECT_TO_FACTORY_IMAGE   SDM_IO13
+set_global_assignment -name DEVICE_INITIALIZATION_CLOCK   OSC_CLK_1_100MHZ
+set_global_assignment -name HPS_DAP_SPLIT_MODE            "SDM PINS"
+set_global_assignment -name STRATIX_JTAG_USER_CODE        4
+set_global_assignment -name USE_CHECKSUM_AS_USERCODE      OFF
+set_global_assignment -name AUTO_RESTART_CONFIGURATION    OFF
+set_global_assignment -name BOARD                         default
+
+set_global_assignment -name PROGRAMMING_BITSTREAM_ENCRYPTION_KEY_SELECT eFuses
+
+source "src/qsf/pins.qsf"
+
+# =============================================================================
+set_global_assignment -name MESSAGE_DISABLE 16788
+set_global_assignment -name MESSAGE_DISABLE 13469
+set_global_assignment -name MESSAGE_DISABLE 24541
+set_global_assignment -name MESSAGE_DISABLE 14284
+set_global_assignment -name MESSAGE_DISABLE 13024
+set_global_assignment -name MESSAGE_DISABLE 25315
+set_global_assignment -name MESSAGE_DISABLE 332049
+set_global_assignment -name MESSAGE_DISABLE 332174
+set_global_assignment -name MESSAGE_DISABLE 171167
+set_global_assignment -name MESSAGE_DISABLE 21610
+set_global_assignment -name MESSAGE_DISABLE 25637
+set_global_assignment -name MESSAGE_DISABLE 13410
+
+source "src/qsf/sdc_before_files.qsf"
+
+set_global_assignment -name IP_SEARCH_PATHS "./src/custom_ip/**/*"
+set_global_assignment -name IP_FILE src/ip/dp_tx_phy/dp_gts_tx.ip
+set_global_assignment -name IP_FILE src/ip/dp_tx_phy/dp_gts_rss.ip
+set_global_assignment -name IP_FILE src/ip/dp_tx_phy/dp_clk_ctrl.ip
+set_global_assignment -name SYSTEMVERILOG_FILE top.sv
+
+set_global_assignment -name VDS_FILE src/vds/top_subsystem/top_subsystem.vds -tag "vds::top_subsystem"
+set_global_assignment -name VDS_FILE src/vds/clock_subsystem/clock_subsystem.vds -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_0_clk_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_0_reset_sync.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_0_rst_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_1_clk_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_1_reset_sync.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_1_rst_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_2_clk_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_2_reset_sync.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_gen_clk_2_rst_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_input_clk_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_input_rst_0_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_input_rst_ctrl.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_iopll_0.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_iopll_locked_shim_0.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_ref_clk_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_ref_clk_reset_sync.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_ref_rst_export_bridge.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_reset_extender.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/clock_subsystem/ip/clock_subsystem_reset_sync.ip -tag "vds::clock_subsystem"
+set_global_assignment -name VDS_FILE src/vds/board_subsystem/board_subsystem.vds -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_board_clk_bridge.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_board_init_generator.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_board_init_reset_bridge.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_board_pb_reset_generator.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_board_reset_controller.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_io_data_avmm_bridge.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_io_data_clk_bridge.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_io_data_rst_bridge.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_user_led_pio.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/board_subsystem/ip/board_subsystem_user_pb_pio.ip -tag "vds::board_subsystem"
+set_global_assignment -name VDS_FILE src/vds/niosv_subsystem/niosv_subsystem.vds -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu_clk_bridge.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu_jtag_uart.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu_mm_bridge.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu_ram.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu_rst_bridge.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_cpu_timer.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/niosv_subsystem/ip/niosv_subsystem_irq_bridge.ip -tag "vds::niosv_subsystem"
+set_global_assignment -name VDS_FILE src/vds/mipi_rx_subsystem/mipi_rx_subsystem.vds -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_cam_i2c.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_cpu_clk_bridge.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_cpu_rst_bridge.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_mipi_csi2.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_mipi_dphy.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_mm_bridge.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_proto_conv.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_vid_clk_bridge.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_rx_subsystem/ip/mipi_rx_subsystem_mipi_in_vid_rst_bridge.ip -tag "vds::mipi_rx_subsystem"
+set_global_assignment -name VDS_FILE src/vds/isp_lite_in_subsystem/isp_lite_in_subsystem.vds -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_cpu_clk_bridge.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_cpu_rst_bridge.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_mm_bridge.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_rms.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_switch.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_tpg.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_vid_clk_bridge.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_in_subsystem/ip/isp_lite_in_subsystem_isp_in_vid_rst_bridge.ip -tag "vds::isp_lite_in_subsystem"
+set_global_assignment -name VDS_FILE src/vds/isp_lite_subsystem/isp_lite_subsystem.vds -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_blc.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_ccm.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_cpu_clk_bridge.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_cpu_rst_bridge.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_dms.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_mm_bridge.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_vid_clk_bridge.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_vid_rst_bridge.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_subsystem/ip/isp_lite_subsystem_isp_wbc.ip -tag "vds::isp_lite_subsystem"
+set_global_assignment -name VDS_FILE src/vds/isp_lite_out_subsystem/isp_lite_out_subsystem.vds -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_1d_lut.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_cpu_clk_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_cpu_rst_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_emif_clk_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_emif_rst_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_icon.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_mixer.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_mm_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_out_proto_conv.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_out_switch.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_se_vfb.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_tpg.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_vfb.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_vid_clk_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_vid_clk_out_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_vid_rst_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_isp_vid_rst_out_bridge.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/isp_lite_out_subsystem/ip/isp_lite_out_subsystem_vid_out_pip_conv.ip -tag "vds::isp_lite_out_subsystem"
+set_global_assignment -name VDS_FILE src/vds/emif_subsystem/emif_subsystem.vds -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_ddr4_cal.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_ddr4_emif.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_axi_clk_out_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_axi_ctrl_ready_out_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_core_clk_rst_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_cpu_clk_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_cpu_rst_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_mm_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_emif_rst_bridge.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/emif_subsystem/ip/emif_subsystem_pio_emif_cal.ip -tag "vds::emif_subsystem"
+set_global_assignment -name VDS_FILE src/vds/pre_dsi_subsystem/pre_dsi_subsystem.vds -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_bps_conv.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_cpu_clk_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_cpu_mm_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_cpu_rst_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_downscaler.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_fifo.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_lite_to_full.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_main_clk_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_main_rst_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_mem_clk_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_mem_mm_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_mem_rst_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_other_mem_in_mm_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_tx_clk_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_tx_rst_bridge.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_vfb.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/pre_dsi_subsystem/ip/pre_dsi_subsystem_pre_dsi_subsystem_vfb_rst_ctrl.ip -tag "vds::pre_dsi_subsystem"
+set_global_assignment -name VDS_FILE src/vds/mipi_dsi2_tx_subsystem/mipi_dsi2_tx_subsystem.vds -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_cpu_clk_bridge.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_cpu_rst_bridge.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_i2c.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_mipi_clk_bridge.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_mipi_dphy.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_mipi_dsi2_0.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_mipi_rst_bridge.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/mipi_dsi2_tx_subsystem/ip/mipi_dsi2_tx_subsystem_mipi_out_mm_bridge.ip -tag "vds::mipi_dsi2_tx_subsystem"
+set_global_assignment -name VDS_FILE src/vds/dp_tx_subsystem/dp_tx_subsystem.vds -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_clk_16.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_dp_core_i2c_board.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_dp_core_pio_board.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_dp_source.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_dp_tx_mgmt_bridge.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_i2c_master.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_mgmt_clk.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_mgmt_rst.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_pio_curr_format.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_pio_format_ovrride.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_pio_status.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_pio_supportd_fmats.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_rst_16.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_vvp_clock_bridge.ip -tag "vds::dp_tx_subsystem"
+set_global_assignment -name VDS_IP_FILE src/vds/dp_tx_subsystem/ip/dp_tx_subsystem_vvp_reset_bridge.ip -tag "vds::dp_tx_subsystem"
+source "src/qsf/sdc_after_files.qsf"

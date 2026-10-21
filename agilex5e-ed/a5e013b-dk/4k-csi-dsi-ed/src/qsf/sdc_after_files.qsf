@@ -1,0 +1,6 @@
+set_global_assignment -name SDC_FILE src/sdc/board.sdc
+set_global_assignment -name SDC_FILE src/sdc/jtag.sdc
+set_global_assignment -name SDC_FILE src/sdc/mipi_csi_rx.sdc
+set_global_assignment -name SDC_FILE src/sdc/mipi_dsi_tx.sdc
+set_global_assignment -name SDC_FILE src/sdc/dp_tx.sdc
+

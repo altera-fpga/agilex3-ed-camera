@@ -1,0 +1,243 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2026  Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Altera and sold by Altera or its authorized distributors.  Please
+# refer to the Altera Software License Subscription Agreements 
+# on the Quartus Prime software download page.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 26.1.1 Internal Build 130 05/14/2026 SC Pro Edition
+# Date created = 09:25:33  May 21, 2026
+#
+# -------------------------------------------------------------------------- #
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 26.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:14:01  SEPTEMBER 21, 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION "26.1.1 Pro Edition"
+set_global_assignment -name FAMILY "Agilex 5"
+set_global_assignment -name DEVICE A5ED013BM16AE4SCS
+set_global_assignment -name OPTIMIZATION_MODE "HIGH PERFORMANCE EFFORT"
+set_global_assignment -name GLOBAL_PLACEMENT_EFFORT "MAXIMUM EFFORT"
+set_global_assignment -name SEED 1
+set_global_assignment -name PWRMGT_VOLTAGE_OUTPUT_FORMAT "LINEAR FORMAT"
+set_global_assignment -name PWRMGT_LINEAR_FORMAT_N "-12"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "ACTIVE SERIAL X4"
+set_global_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON
+set_global_assignment -name GENERATE_COMPRESSED_SOF ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2012
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED WITH WEAK PULL-UP"
+set_global_assignment -name HPS_DAP_NO_CERTIFICATE                      on
+set_global_assignment -name ENABLE_INTERMEDIATE_SNAPSHOTS               ON
+set_global_assignment -name USE_HPS_COLD_RESET                          SDM_IO10
+set_global_assignment -name USE_CONF_DONE                               SDM_IO16
+set_global_assignment -name USE_INIT_DONE                               SDM_IO0
+set_global_assignment -name SDM_DIRECT_TO_FACTORY_IMAGE                 SDM_IO13
+set_global_assignment -name DEVICE_INITIALIZATION_CLOCK                 OSC_CLK_1_100MHZ
+set_global_assignment -name HPS_DAP_SPLIT_MODE                          "SDM PINS"
+set_global_assignment -name STRATIX_JTAG_USER_CODE                      4
+set_global_assignment -name USE_CHECKSUM_AS_USERCODE                    OFF
+set_global_assignment -name AUTO_RESTART_CONFIGURATION                  OFF
+set_global_assignment -name BOARD                                       default
+set_global_assignment -name INI_VARS                                    "asm_enable_advanced_devices=on"
+set_global_assignment -name PROGRAMMING_BITSTREAM_ENCRYPTION_KEY_SELECT eFuses
+
+# -----------------------------------------------------------------------------
+# Board clock / reset / push-buttons / LEDs
+# -----------------------------------------------------------------------------
+
+# set pin assignments
+
+# clock/global reset
+# (HVIO6C_PLLREFCLK1) SI5332A-GM1 OUT4, default to 100MHz
+set_location_assignment PIN_AJ27                            -to clk_100_mhz
+set_instance_assignment -name GLOBAL_SIGNAL ON              -to clk_100_mhz -entity top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS"    -to clk_100_mhz -entity top
+
+# pin FPGA_CORE_RESETn, silkscreen=FPGA_RESET
+set_location_assignment PIN_M1                              -to rst_pb_n
+set_instance_assignment -name IO_STANDARD "1.1-V"           -to rst_pb_n -entity top
+
+# push buttons and LEDs
+set_location_assignment PIN_L1 -to user_pb_n[0] -comment FPGA_PB0
+set_instance_assignment -name IO_STANDARD "1.1-V"           -to user_pb_n[0] -entity top
+
+set_location_assignment PIN_K1                              -to user_led[0]
+set_location_assignment PIN_L2                              -to user_led[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW 12MA     -to user_led[0]
+set_instance_assignment -name SLEW_RATE 0                   -to user_led[0]
+set_instance_assignment -name IO_STANDARD "1.1 V"           -to user_led[0] -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 12MA     -to user_led[1]
+set_instance_assignment -name SLEW_RATE 0                   -to user_led[1]
+set_instance_assignment -name IO_STANDARD "1.1 V"           -to user_led[1] -entity top
+
+# -----------------------------------------------------------------------------
+# EMIF/DDR4
+# -----------------------------------------------------------------------------
+
+# ddr BANK 2A
+# LPDDR4 Bank 2A
+set_location_assignment PIN_AF7 -to bank_2a_mem_ca[0] -comment "EMIF 2A"
+set_location_assignment PIN_AE7 -to bank_2a_mem_ca[1] -comment "EMIF 2A"
+set_location_assignment PIN_AF6 -to bank_2a_mem_ca[2] -comment "EMIF 2A"
+set_location_assignment PIN_AE6 -to bank_2a_mem_ca[3] -comment "EMIF 2A"
+set_location_assignment PIN_AH5 -to bank_2a_mem_ca[4] -comment "EMIF 2A"
+set_location_assignment PIN_AG5 -to bank_2a_mem_ca[5] -comment "EMIF 2A"
+set_location_assignment PIN_AB3 -to bank_2a_mem_ck[0] -comment "EMIF 2A"
+set_location_assignment PIN_AA4 -to bank_2a_mem_ck_n[0] -comment "EMIF 2A"
+set_location_assignment PIN_AH6 -to bank_2a_mem_cke[0] -comment "EMIF 2A"
+set_location_assignment PIN_AF4 -to bank_2a_mem_cs[0] -comment "EMIF 2A"
+set_location_assignment PIN_AD2 -to bank_2a_mem_dmi[0] -comment "EMIF 2A"
+set_location_assignment PIN_AJ5 -to bank_2a_mem_dmi[1] -comment "EMIF 2A"
+set_location_assignment PIN_T3 -to bank_2a_mem_dmi[2] -comment "EMIF 2A"
+set_location_assignment PIN_T6 -to bank_2a_mem_dmi[3] -comment "EMIF 2A"
+set_location_assignment PIN_AB1 -to bank_2a_mem_dq[0] -comment "EMIF 2A"
+set_location_assignment PIN_AJ7 -to bank_2a_mem_dq[10] -comment "EMIF 2A"
+set_location_assignment PIN_AJ8 -to bank_2a_mem_dq[11] -comment "EMIF 2A"
+set_location_assignment PIN_AG3 -to bank_2a_mem_dq[12] -comment "EMIF 2A"
+set_location_assignment PIN_AH2 -to bank_2a_mem_dq[13] -comment "EMIF 2A"
+set_location_assignment PIN_AH3 -to bank_2a_mem_dq[14] -comment "EMIF 2A"
+set_location_assignment PIN_AJ3 -to bank_2a_mem_dq[15] -comment "EMIF 2A"
+set_location_assignment PIN_P4 -to bank_2a_mem_dq[16] -comment "EMIF 2A"
+set_location_assignment PIN_P5 -to bank_2a_mem_dq[17] -comment "EMIF 2A"
+set_location_assignment PIN_U3 -to bank_2a_mem_dq[18] -comment "EMIF 2A"
+set_location_assignment PIN_V3 -to bank_2a_mem_dq[19] -comment "EMIF 2A"
+set_location_assignment PIN_AA2 -to bank_2a_mem_dq[1] -comment "EMIF 2A"
+set_location_assignment PIN_W3 -to bank_2a_mem_dq[20] -comment "EMIF 2A"
+set_location_assignment PIN_U4 -to bank_2a_mem_dq[21] -comment "EMIF 2A"
+set_location_assignment PIN_P3 -to bank_2a_mem_dq[22] -comment "EMIF 2A"
+set_location_assignment PIN_N3 -to bank_2a_mem_dq[23] -comment "EMIF 2A"
+set_location_assignment PIN_V5 -to bank_2a_mem_dq[24] -comment "EMIF 2A"
+set_location_assignment PIN_V6 -to bank_2a_mem_dq[25] -comment "EMIF 2A"
+set_location_assignment PIN_N7 -to bank_2a_mem_dq[26] -comment "EMIF 2A"
+set_location_assignment PIN_N6 -to bank_2a_mem_dq[27] -comment "EMIF 2A"
+set_location_assignment PIN_R7 -to bank_2a_mem_dq[28] -comment "EMIF 2A"
+set_location_assignment PIN_P7 -to bank_2a_mem_dq[29] -comment "EMIF 2A"
+set_location_assignment PIN_AA1 -to bank_2a_mem_dq[2] -comment "EMIF 2A"
+set_location_assignment PIN_W5 -to bank_2a_mem_dq[30] -comment "EMIF 2A"
+set_location_assignment PIN_U6 -to bank_2a_mem_dq[31] -comment "EMIF 2A"
+set_location_assignment PIN_Y2 -to bank_2a_mem_dq[3] -comment "EMIF 2A"
+set_location_assignment PIN_AG1 -to bank_2a_mem_dq[4] -comment "EMIF 2A"
+set_location_assignment PIN_AF2 -to bank_2a_mem_dq[5] -comment "EMIF 2A"
+set_location_assignment PIN_AF1 -to bank_2a_mem_dq[6] -comment "EMIF 2A"
+set_location_assignment PIN_AE2 -to bank_2a_mem_dq[7] -comment "EMIF 2A"
+set_location_assignment PIN_AK6 -to bank_2a_mem_dq[8] -comment "EMIF 2A"
+set_location_assignment PIN_AK7 -to bank_2a_mem_dq[9] -comment "EMIF 2A"
+set_location_assignment PIN_AC1 -to bank_2a_mem_dqs[0] -comment "EMIF 2A"
+set_location_assignment PIN_AK4 -to bank_2a_mem_dqs[1] -comment "EMIF 2A"
+set_location_assignment PIN_U5 -to bank_2a_mem_dqs[2] -comment "EMIF 2A"
+set_location_assignment PIN_R5 -to bank_2a_mem_dqs[3] -comment "EMIF 2A"
+set_location_assignment PIN_AC2 -to bank_2a_mem_dqs_n[0] -comment "EMIF 2A"
+set_location_assignment PIN_AJ4 -to bank_2a_mem_dqs_n[1] -comment "EMIF 2A"
+set_location_assignment PIN_T4 -to bank_2a_mem_dqs_n[2] -comment "EMIF 2A"
+set_location_assignment PIN_R6 -to bank_2a_mem_dqs_n[3] -comment "EMIF 2A"
+set_location_assignment PIN_AD4 -to bank_2a_mem_reset_n -comment "EMIF 2A"
+set_location_assignment PIN_AF3 -to bank_2a_mem_pll_ref_clk
+set_location_assignment PIN_AD3 -to bank_2a_mem_oct_rzqin
+set_instance_assignment -name IO_STANDARD "1.1V TRUE DIFFERENTIAL SIGNALING" -to bank_2a_mem_pll_ref_clk -entity top
+set_instance_assignment -name IO_STANDARD "1.1 V" -to bank_2a_mem_oct_rzqin -entity top
+
+# -----------------------------------------------------------------------------
+# MIPI CSI-2 RX (camera input)
+# -----------------------------------------------------------------------------
+
+set_location_assignment PIN_F2 -to mipi_csi2_rx_dphy_ref_clk -comment IOBANK_3A_T
+set_location_assignment PIN_G1 -to mipi_csi2_rx_dphy_rzq -comment IOBANK_3A_T
+
+set_location_assignment PIN_D5 -to mipi_csi2_rx_dphy_link0_io_c_p -comment IOBANK_3A_T
+set_location_assignment PIN_E5 -to mipi_csi2_rx_dphy_link0_io_c_n -comment IOBANK_3A_T
+set_instance_assignment -name IO_STANDARD DPHY -to mipi_csi2_rx_dphy_link0_io_c_p -entity top
+set_instance_assignment -name IO_STANDARD DPHY -to mipi_csi2_rx_dphy_link0_io_c_n -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to mipi_csi2_rx_dphy_link0_io_c_p -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to mipi_csi2_rx_dphy_link0_io_c_n -entity top
+
+set_location_assignment PIN_C5 -to mipi_csi2_rx_dphy_link0_io_d_p[0]
+set_location_assignment PIN_D4 -to mipi_csi2_rx_dphy_link0_io_d_n[0]
+set_instance_assignment -name IO_STANDARD DPHY -to mipi_csi2_rx_dphy_link0_io_d_p[0] -entity top
+set_instance_assignment -name IO_STANDARD DPHY -to mipi_csi2_rx_dphy_link0_io_d_n[0] -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to mipi_csi2_rx_dphy_link0_io_d_p[0] -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to mipi_csi2_rx_dphy_link0_io_d_n[0] -entity top
+
+set_location_assignment PIN_F6 -to mipi_csi2_rx_dphy_link0_io_d_p[1]
+set_location_assignment PIN_E6 -to mipi_csi2_rx_dphy_link0_io_d_n[1]
+set_instance_assignment -name IO_STANDARD DPHY -to mipi_csi2_rx_dphy_link0_io_d_p[1] -entity top
+set_instance_assignment -name IO_STANDARD DPHY -to mipi_csi2_rx_dphy_link0_io_d_n[1] -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to mipi_csi2_rx_dphy_link0_io_d_p[1] -entity top
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to mipi_csi2_rx_dphy_link0_io_d_n[1] -entity top
+
+set_location_assignment PIN_AF27 -to mipi_csi2_rx_power_en -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mipi_csi2_rx_power_en -entity top
+
+set_location_assignment PIN_AJ28 -to mipi_csi2_rx_led_en -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mipi_csi2_rx_led_en -entity top
+
+set_location_assignment PIN_AK21 -to mipi_csi2_rx_i2c_scl -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mipi_csi2_rx_i2c_scl -entity top
+
+set_location_assignment PIN_AK27 -to mipi_csi2_rx_i2c_sda -comment IOBANK_5B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mipi_csi2_rx_i2c_sda -entity top
+
+# -----------------------------------------------------------------------------
+# DisplayPort TX
+# -----------------------------------------------------------------------------
+# DP Carrier Board
+set_location_assignment PIN_P25 -to fgt_refclk_150
+set_instance_assignment -name IO_STANDARD "CURRENT MODE LOGIC (CML)" -to fgt_refclk_150 -entity top
+
+set_location_assignment PIN_K27 -to pin_dp_tx_p[0]
+set_location_assignment PIN_G27 -to pin_dp_tx_p[1]
+set_location_assignment PIN_J27 -to pin_dp_tx_n[0]
+set_location_assignment PIN_F27 -to pin_dp_tx_n[1]
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to pin_dp_tx_p[0] -entity top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to pin_dp_tx_p[1] -entity top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to pin_dp_tx_n[0] -entity top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to pin_dp_tx_n[1] -entity top
+
+set_location_assignment PIN_Y6  -to pin_dp_tx_hpd
+set_location_assignment PIN_J2  -to pin_dp_tx_aux_in
+set_location_assignment PIN_W7  -to pin_dp_tx_cad
+set_location_assignment PIN_H2  -to pin_dp_tx_aux_out
+set_location_assignment PIN_AB5 -to pin_dp_tx_aux_oe
+
+set_instance_assignment -name IO_STANDARD "1.1-V" -to pin_dp_tx_hpd -entity top
+set_instance_assignment -name IO_STANDARD "1.1-V" -to pin_dp_tx_aux_in -entity top
+set_instance_assignment -name IO_STANDARD "1.1-V" -to pin_dp_tx_cad -entity top
+set_instance_assignment -name IO_STANDARD "1.1-V" -to pin_dp_tx_aux_out -entity top
+set_instance_assignment -name IO_STANDARD "1.1-V" -to pin_dp_tx_aux_oe -entity top
+
+# =============================================================================
+set_global_assignment -name MESSAGE_DISABLE 16788 
+set_global_assignment -name MESSAGE_DISABLE 13469 
+set_global_assignment -name MESSAGE_DISABLE 24541 
+set_global_assignment -name MESSAGE_DISABLE 14284 
+set_global_assignment -name MESSAGE_DISABLE 276020
+set_global_assignment -name MESSAGE_DISABLE 13024 
+set_global_assignment -name MESSAGE_DISABLE 25315 
+set_global_assignment -name MESSAGE_DISABLE 332049
+set_global_assignment -name MESSAGE_DISABLE 332174
+set_global_assignment -name MESSAGE_DISABLE 171167
+
+set_global_assignment -name IP_SEARCH_PATHS "./src/custom_ip/**/*"
+set_global_assignment -name IP_FILE src/ip/dp_tx_phy/dp_gts_tx.ip
+set_global_assignment -name IP_FILE src/ip/dp_tx_phy/dp_gts_rss.ip
+set_global_assignment -name IP_FILE src/ip/dp_tx_phy/dp_clk_ctrl.ip
+set_global_assignment -name SYSTEMVERILOG_FILE src/rtl/top.sv
+set_global_assignment -name PRE_FLOW_SCRIPT_FILE "quartus_sh:./scripts/generation_step_vds.tcl"
+
+
+
+

@@ -1,0 +1,33 @@
+# Quartus-specific build artifacts
+gen/
+qdb/
+dni/
+output_files/
+incremental_db/
+tmp-clearbox/
+.qsys_edit/
+
+*.history
+*.log
+*.bak
+*.qws
+*.qdf
+
+# IP generation files are always generated in same directory as .ip file
+src/ip/*/*/
+
+# Quartus crash stack trace
+serv_req_info.txt
+
+# Software build artifacts
+gdbopxdriscv.ini
+
+# Editor/script artifacts
+.vscode/
+*.swp
+__pycache__/
+*.pyc
+
+# Not tracked; generated only if developer calls build_niosv_sw.py
+.clangd
+.clang-format
